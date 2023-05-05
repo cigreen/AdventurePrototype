@@ -1,18 +1,33 @@
-class Demo1 extends AdventureScene {
+class Yard extends AdventureScene {
     constructor() {
-        super("demo1", "First Room");
+        super("yard", "The Yard");
     }
 
     onEnter() {
 
-        let clip = this.add.text(this.w * 0.3, this.w * 0.3, "📎 paperclip")
+        let window = this.add.text(this.w * 0.3, this.w * 0.3, "🪟 window")
             .setFontSize(this.s * 2)
             .setInteractive()
-            .on('pointerover', () => this.showMessage("Metal, bent."))
+            .on('pointerover', () => {
+                if (this.hasItem("plant")) {
+                    this.showMessage("oh man, you're gonna vandalize your own house, aren't you?");
+                } else {
+                    this.showMessage("a window on your house. Some HOOLIGANS threw a ball at this one time and it broke.");
+                }
+            })
+            .on('pointerdown', () => {
+                if (this.hasItem("plant")) {
+                    this.loseItem("plant");
+                    this.showMessage("alright. I mean, yeah, that certainly is A method to enter your own home.");
+                    window.setText("🪟 broken window");
+                    this.gotoScene('livingroom');
+                }
+            })
+            /* old code. i think this is shaking code, try to implement this into adventure.js
             .on('pointerdown', () => {
                 this.showMessage("No touching!");
                 this.tweens.add({
-                    targets: clip,
+                    targets: window,
                     x: '+=' + this.s,
                     repeat: 2,
                     yoyo: true,
@@ -20,7 +35,7 @@ class Demo1 extends AdventureScene {
                     duration: 100
                 });
             });
-
+*/
         let plant = this.add.text(this.w * 0.5, this.w * 0.1, "🪴 plant")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -39,69 +54,60 @@ class Demo1 extends AdventureScene {
                 });
             })
 
-        let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 locked door")
+        let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 door")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
-                if (this.hasItem("plant")) {
-                    this.showMessage("You've got the plant for this door.");
-                } else {
-                    this.showMessage("It's locked. Can you find a plant?");
-                }
-            })
-            .on('pointerdown', () => {
-                if (this.hasItem("plant")) {
-                    this.loseItem("plant");
-                    this.showMessage("*squeak*");
-                    door.setText("🚪 unlocked door");
-                    this.gotoScene('demo2');
-                }
+                this.showMessage("the door to your house. Going through here would surely be what most humans would to get into a house.")
+                })
+            .on('pointerdown', () => {    
+                    this.gotoScene('livingroom');
+                
             })
 
     }
 }
 
-class Demo2 extends AdventureScene {
+class LivingRoom extends AdventureScene {
     constructor() {
-        super("demo2", "The second room has a long name (it truly does).");
+        super("livingroom", "The Living Room");
     }
     onEnter() {
-        this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
+        let window = this.add.text(this.w * 0.3, this.w * 0.4, "🪟 window")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
-                this.showMessage("You've got no other choice, really.");
+                this.showMessage("“that is, in fact, a fweaking window.”");
             })
             .on('pointerdown', () => {
-                this.gotoScene('demo1');
+                this.gotoScene('yard');
             });
 
-        let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
+        let garagedoor = this.add.text(this.w * 0.6, this.w * 0.2, "🚪 door ")
             .setInteractive()
             .on('pointerover', () => {
-                this.showMessage('*giggles*');
-                this.tweens.add({
-                    targets: finish,
-                    x: this.s + (this.h - 2 * this.s) * Math.random(),
-                    y: this.s + (this.h - 2 * this.s) * Math.random(),
-                    ease: 'Sine.inOut',
-                    duration: 500
-                });
+                this.showMessage('this door heads to the garage.');
+                
             })
-            .on('pointerdown', () => this.gotoScene('outro'));
+            .on('pointerdown', () => this.gotoScene('garage'));
     }
 }
-
+class Garage extends AdventureScene {
+    constructor() {
+        super("garage", "The Garage");
+    }
+}
 class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
     }
     create() {
-        this.add.text(50,50, "Adventure awaits!").setFontSize(50);
-        this.add.text(50,100, "Click anywhere to begin.").setFontSize(20);
+        this.add.text(50,50, "Cookie Quest").setFontSize(50);
+        this.add.text(50, 100, "You’ve been tending your flowers for too long, and now your tummy is a-rumblin’").setFontSize(20);
+        this.add.text(50,150, "Click anywhere to begin.").setFontSize(20);
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
-            this.time.delayedCall(1000, () => this.scene.start('demo1'));
+            this.time.delayedCall(1000, () => this.scene.start('yard'));
         });
     }
 }
@@ -124,8 +130,9 @@ const game = new Phaser.Game({
         autoCenter: Phaser.Scale.CENTER_BOTH,
         width: 1920,
         height: 1080
+        //backgroundColor: 0xffe599,
     },
-    scene: [Intro, Demo1, Demo2, Outro],
+    scene: [Intro, Yard, LivingRoom, Garage, Outro],
     title: "Adventure Game",
 });
 
