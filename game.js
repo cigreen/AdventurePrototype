@@ -73,6 +73,35 @@ class LivingRoom extends AdventureScene {
         super("livingroom", "The Living Room");
     }
     onEnter() {
+        let kitchendoor = this.add.text(this.w * 0.5, this.w * 0.1, "🚪 door")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("THIS DOOR GOES TO THE KITCHEN THIS IS SO EXCITING IT’S COOKIE TIME AHHHHHHHHH")
+                })
+            .on('pointerdown', () => {    
+                    this.gotoScene('kitchen');
+                
+            })
+
+        let garagekey = this.add.text(this.w * 0.4, this.w * 0.15, "🔑 key")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("the key to the garage! huzzah!")
+            })
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the key.");
+                this.gainItem('garagekey');
+                this.tweens.add({
+                    targets: garagekey,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => garagekey.destroy()
+                });
+            })
+
         let window = this.add.text(this.w * 0.3, this.w * 0.4, "🪟 window")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -83,13 +112,30 @@ class LivingRoom extends AdventureScene {
                 this.gotoScene('yard');
             });
 
-        let garagedoor = this.add.text(this.w * 0.6, this.w * 0.2, "🚪 door ")
+        let garagedoor = this.add.text(this.w * 0.6, this.w * 0.2, "🚪 door")
             .setInteractive()
             .on('pointerover', () => {
                 this.showMessage('this door heads to the garage.');
                 
             })
-            .on('pointerdown', () => this.gotoScene('garage'));
+            .on('pointerdown', () => {
+                if (this.hasItem("garagekey")) {
+                    this.loseItem("garagekey");
+                    this.showMessage("Unlocked the door!");
+                    garagedoor.setText("🚪 unlocked door");
+                    this.gotoScene('garage');
+                } else {
+                    this.showMessage("oopsie doopsie, gotta get the key!")
+                }
+            })
+    }
+}
+class Kitchen extends AdventureScene {
+    constructor() {
+        super("kitchen", "The Kitchen");
+    }
+    onEnter() {
+        
     }
 }
 class Garage extends AdventureScene {
@@ -199,7 +245,7 @@ const game = new Phaser.Game({
         height: 1080
         //backgroundColor: 0xffe599,
     },
-    scene: [Intro, Yard, LivingRoom, Garage, Outro],
+    scene: [Intro, Yard, LivingRoom, Garage, Kitchen, Outro],
     title: "Adventure Game",
 });
 
