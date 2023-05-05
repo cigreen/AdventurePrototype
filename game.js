@@ -21,21 +21,21 @@ class Demo1 extends AdventureScene {
                 });
             });
 
-        let key = this.add.text(this.w * 0.5, this.w * 0.1, "🔑 key")
+        let plant = this.add.text(this.w * 0.5, this.w * 0.1, "🪴 plant")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
-                this.showMessage("It's a nice key.")
+                this.showMessage("a plant in a pot. Surprisingly hefty!")
             })
             .on('pointerdown', () => {
-                this.showMessage("You pick up the key.");
-                this.gainItem('key');
+                this.showMessage("You pick up the plant.");
+                this.gainItem('plant');
                 this.tweens.add({
-                    targets: key,
+                    targets: plant,
                     y: `-=${2 * this.s}`,
                     alpha: { from: 1, to: 0 },
                     duration: 500,
-                    onComplete: () => key.destroy()
+                    onComplete: () => plant.destroy()
                 });
             })
 
@@ -43,15 +43,15 @@ class Demo1 extends AdventureScene {
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
-                if (this.hasItem("key")) {
-                    this.showMessage("You've got the key for this door.");
+                if (this.hasItem("plant")) {
+                    this.showMessage("You've got the plant for this door.");
                 } else {
-                    this.showMessage("It's locked. Can you find a key?");
+                    this.showMessage("It's locked. Can you find a plant?");
                 }
             })
             .on('pointerdown', () => {
-                if (this.hasItem("key")) {
-                    this.loseItem("key");
+                if (this.hasItem("plant")) {
+                    this.loseItem("plant");
                     this.showMessage("*squeak*");
                     door.setText("🚪 unlocked door");
                     this.gotoScene('demo2');
