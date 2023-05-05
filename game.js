@@ -96,6 +96,73 @@ class Garage extends AdventureScene {
     constructor() {
         super("garage", "The Garage");
     }
+    onEnter() {
+        let ladder = this.add.text(this.w * 0.2, this.w * 0.15, "🪜 ladder")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("this could be helpful to get a cookie from the top shelf.")
+            })
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the ladder.");
+                this.gainItem('ladder');
+                this.tweens.add({
+                    targets: ladder,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => ladder.destroy()
+                });
+            })
+
+        let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 door")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("the door to your living room.")
+                })
+            .on('pointerdown', () => {    
+                    this.showMessage('it’s locked. Oh gee willickers, we left the key inside! Silly billy, gotta find another way inside after your mistakey-wakey!');
+                
+            })
+        let plant = this.add.text(this.w * 0.5, this.w * 0.1, "🪴 plant")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("another plant! In the room with the least amount of sun! Real smart thinking, putting it in here.")
+            })
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the plant.");
+                this.gainItem('plant');
+                this.tweens.add({
+                    targets: plant,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => plant.destroy()
+                });
+            })
+            let wall = this.add.text(this.w * 0.3, this.w * 0.3, "🧱 wall ")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                if (this.hasItem("plant")) {
+                    this.showMessage("ok, there's no way this works a second time.");
+                } else {
+                    this.showMessage("a literal brick wall.");
+                }
+            })
+            .on('pointerdown', () => {
+                if (this.hasItem("plant")) {
+                    this.loseItem("plant");
+                    this.showMessage("WHAT");
+                    wall.setText("🧱 broken wall");
+                    this.gotoScene('livingroom');
+                } else {
+                    this.showMessage("you're not the kool-aid man.")
+                }
+            })
+    }
 }
 class Intro extends Phaser.Scene {
     constructor() {
