@@ -18,6 +18,7 @@ class Yard extends AdventureScene {
                 if (this.hasItem("plant")) {
                     this.loseItem("plant");
                     this.showMessage("alright. I mean, yeah, that certainly is A method to enter your own home.");
+                    this.shakeItem("window")
                     window.setText("🪟 broken window");
                     this.gotoScene('livingroom');
                 }

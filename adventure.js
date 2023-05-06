@@ -90,6 +90,17 @@ class AdventureScene extends Phaser.Scene {
             this.inventoryTexts.push(text);
         });
     }
+    // will make an object shake when pressed, showing that the interaction worked.
+    shakeItem(item) {
+        this.tweens.add({
+            targets: window,
+            x: '+=' + this.s,
+            repeat: 2,
+            yoyo: true,
+            ease: 'Sine.inOut',
+            duration: 100
+        });
+    }
 
     hasItem(item) {
         return this.inventory.includes(item);
