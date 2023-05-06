@@ -91,9 +91,9 @@ class AdventureScene extends Phaser.Scene {
         });
     }
     // will make an object shake when pressed, showing that the interaction worked.
-    shakeItem(item) {
+    shakeItem(obj) {
         this.tweens.add({
-            targets: window,
+            targets: obj,
             x: '+=' + this.s,
             repeat: 2,
             yoyo: true,

@@ -16,26 +16,13 @@ class Yard extends AdventureScene {
             })
             .on('pointerdown', () => {
                 if (this.hasItem("plant")) {
+                    this.shakeItem(window)
                     this.loseItem("plant");
                     this.showMessage("alright. I mean, yeah, that certainly is A method to enter your own home.");
-                    this.shakeItem("window")
                     window.setText("🪟 broken window");
                     this.gotoScene('livingroom');
                 }
             })
-            /* old code. i think this is shaking code, try to implement this into adventure.js
-            .on('pointerdown', () => {
-                this.showMessage("No touching!");
-                this.tweens.add({
-                    targets: window,
-                    x: '+=' + this.s,
-                    repeat: 2,
-                    yoyo: true,
-                    ease: 'Sine.inOut',
-                    duration: 100
-                });
-            });
-*/
         let plant = this.add.text(this.w * 0.5, this.w * 0.1, "🪴 plant")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -62,6 +49,7 @@ class Yard extends AdventureScene {
                 })
             .on('pointerdown', () => {    
                     this.gotoScene('livingroom');
+                    this.shakeItem(door)
                 
             })
 
@@ -81,6 +69,7 @@ class LivingRoom extends AdventureScene {
                 })
             .on('pointerdown', () => {    
                     this.gotoScene('kitchen');
+                    this.shakeItem(kitchendoor)
                 
             })
 
@@ -110,6 +99,7 @@ class LivingRoom extends AdventureScene {
             })
             .on('pointerdown', () => {
                 this.gotoScene('yard');
+                this.shakeItem(window)
             });
 
         let garagedoor = this.add.text(this.w * 0.6, this.w * 0.2, "🚪 door")
@@ -121,6 +111,7 @@ class LivingRoom extends AdventureScene {
             .on('pointerdown', () => {
                 if (this.hasItem("garagekey")) {
                     this.loseItem("garagekey");
+                    this.shakeItem(garagedoor)
                     this.showMessage("Unlocked the door!");
                     garagedoor.setText("🚪 unlocked door");
                     this.gotoScene('garage');
@@ -143,6 +134,7 @@ class Kitchen extends AdventureScene {
             })
             .on('pointerdown', () => {
                 if (this.hasItem("ladder")) {
+                        this.shakeItem(cookie)
                         this.showMessage("IT’S COOKIE TIME LETS GOOOOOOOO!");
                         this.gotoScene('outro');
                 } else {
@@ -156,6 +148,7 @@ class Kitchen extends AdventureScene {
                 this.showMessage("the sink. You gotta clean those grubby little paws after all the plant throwing.")
             })
             .on('pointerdown', () => {
+                    this.shakeItem(sink)
                     this.showMessage("hands cleaned, all ready to munch on cookies!");
             })
         let kitchendoor2 = this.add.text(this.w * 0.5, this.w * 0.1, "🚪 door")
@@ -165,6 +158,7 @@ class Kitchen extends AdventureScene {
                 this.showMessage("a door that leads to the living room!")
                 })
             .on('pointerdown', () => {    
+                    this.shakeItem(kitchendoor2)
                     this.gotoScene('livingroom');
                 
             })
@@ -199,7 +193,7 @@ class Garage extends AdventureScene {
             .on('pointerover', () => {
                 this.showMessage("the door to your living room.")
                 })
-            .on('pointerdown', () => {    
+            .on('pointerdown', () => {   
                     this.showMessage('it’s locked. Oh gee willickers, we left the key inside! Silly billy, gotta find another way inside after your mistakey-wakey!');
                 
             })
@@ -233,6 +227,7 @@ class Garage extends AdventureScene {
             .on('pointerdown', () => {
                 if (this.hasItem("plant")) {
                     this.loseItem("plant");
+                    this.shakeItem(wall)
                     this.showMessage("WHAT");
                     wall.setText("🧱 broken wall");
                     this.gotoScene('livingroom');
