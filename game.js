@@ -4,7 +4,6 @@ class Yard extends AdventureScene {
     }
 
     onEnter() {
-
         let window = this.add.text(this.w * 0.3, this.w * 0.3, "🪟 window")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -135,7 +134,42 @@ class Kitchen extends AdventureScene {
         super("kitchen", "The Kitchen");
     }
     onEnter() {
-        
+        let cookie = this.add.text(this.w * 0.3, this.w * 0.3, "🍪 cookie")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("a cookie on the top shelf. Might need a ladder to reach that.");
+            })
+            .on('pointerdown', () => {
+                if (this.hasItem("ladder")) {
+                    //if (cleanHands) {
+                        this.showMessage("IT’S COOKIE TIME LETS GOOOOOOOO!");
+                        this.gotoScene('outro');
+                   // }
+                } else {
+                    this.showMessage("have you washed your hands and found a ladder?")
+                }
+            })
+        let sink = this.add.text(this.w * 0.2, this.w * 0.15, "🚰 sink")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("the sink. You gotta clean those grubby little paws after all the plant throwing.")
+            })
+            .on('pointerdown', () => {
+                    this.showMessage("hands cleaned, all ready to munch on cookies!");
+                    let cleanHands = True; // MIGHT HAVE TO FIX THIS
+            })
+        let kitchendoor2 = this.add.text(this.w * 0.5, this.w * 0.1, "🚪 door")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("a door that leads to the living room!")
+                })
+            .on('pointerdown', () => {    
+                    this.gotoScene('livingroom');
+                
+            })
     }
 }
 class Garage extends AdventureScene {
