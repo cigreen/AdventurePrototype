@@ -142,12 +142,10 @@ class Kitchen extends AdventureScene {
             })
             .on('pointerdown', () => {
                 if (this.hasItem("ladder")) {
-                    //if (cleanHands) {
                         this.showMessage("IT’S COOKIE TIME LETS GOOOOOOOO!");
                         this.gotoScene('outro');
-                   // }
                 } else {
-                    this.showMessage("have you washed your hands and found a ladder?")
+                    this.showMessage("nope, too high. gotta find a ladder!")
                 }
             })
         let sink = this.add.text(this.w * 0.2, this.w * 0.15, "🚰 sink")
@@ -158,7 +156,6 @@ class Kitchen extends AdventureScene {
             })
             .on('pointerdown', () => {
                     this.showMessage("hands cleaned, all ready to munch on cookies!");
-                    let cleanHands = True; // MIGHT HAVE TO FIX THIS
             })
         let kitchendoor2 = this.add.text(this.w * 0.5, this.w * 0.1, "🚪 door")
             .setFontSize(this.s * 2)
