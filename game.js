@@ -4,7 +4,7 @@ class Yard extends AdventureScene {
     }
 
     onEnter() {
-        let window = this.add.text(this.w * 0.3, this.w * 0.3, "🪟 window")
+        let window = this.add.text(this.w * 0.5, this.w * 0.1, "🪟 window")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -23,7 +23,7 @@ class Yard extends AdventureScene {
                     this.gotoScene('livingroom');
                 }
             })
-        let plant = this.add.text(this.w * 0.5, this.w * 0.1, "🪴 plant")
+        let plant = this.add.text(this.w * 0.1, this.w * 0.25, "🪴 plant")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -36,7 +36,7 @@ class Yard extends AdventureScene {
                 this.grabItem(plant)
             })
 
-        let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 door")
+        let door = this.add.text(this.w * 0.5, this.w * 0.4, "🚪 door")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -56,7 +56,7 @@ class LivingRoom extends AdventureScene {
         super("livingroom", "The Living Room");
     }
     onEnter() {
-        let television = this.add.text(this.w * 0.5, this.w * 0.5, "📺 tv" )
+        let television = this.add.text(this.w * 0.30, this.w * 0.25, "📺 tv" )
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -66,7 +66,7 @@ class LivingRoom extends AdventureScene {
                     this.shakeItem(television)
                     this.showMessage("we lost, this game sucks it’s actually so bad trash game trash creators awful gameplay, valorant is way better anyways because this game is so dead it's on life support who even plays this awful game anymore it's such a nightmare to try to do anything in this game because the devs dont care about it and its definitely not my fault we lost but my teammates why do i always get awful teammates?");
             })
-        let yardDoor = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 door")
+        let yardDoor = this.add.text(this.w * 0.1, this.w * 0.4, "🚪 door")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -89,7 +89,7 @@ class LivingRoom extends AdventureScene {
                 
             })
 
-        let garagekey = this.add.text(this.w * 0.4, this.w * 0.15, "🔑 key")
+        let garagekey = this.add.text(this.w * 0.30, this.w * 0.4, "🔑 key")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -101,7 +101,7 @@ class LivingRoom extends AdventureScene {
                 this.grabItem(garagekey)
             })
 
-        let window = this.add.text(this.w * 0.3, this.w * 0.4, "🪟 window")
+        let window = this.add.text(this.w * 0.1, this.w * 0.1, "🪟 window")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -112,7 +112,7 @@ class LivingRoom extends AdventureScene {
                 this.shakeItem(window)
             });
 
-        let garagedoor = this.add.text(this.w * 0.6, this.w * 0.2, "🚪 door")
+        let garagedoor = this.add.text(this.w * 0.5, this.w * 0.4, "🚪 door")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -137,7 +137,7 @@ class Kitchen extends AdventureScene {
         super("kitchen", "The Kitchen");
     }
     onEnter() {
-        let cookie = this.add.text(this.w * 0.3, this.w * 0.3, "🍪 cookie")
+        let cookie = this.add.text(this.w * 0.1, this.w * 0.3, "🍪 cookie")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -152,7 +152,7 @@ class Kitchen extends AdventureScene {
                     this.showMessage("nope, too high. gotta find a ladder!")
                 }
             })
-        let sink = this.add.text(this.w * 0.2, this.w * 0.15, "🚰 sink")
+        let sink = this.add.text(this.w * 0.35, this.w * 0.1, "🚰 sink")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -162,7 +162,7 @@ class Kitchen extends AdventureScene {
                     this.shakeItem(sink)
                     this.showMessage("hands cleaned, all ready to munch on cookies!");
             })
-        let kitchendoor2 = this.add.text(this.w * 0.5, this.w * 0.1, "🚪 door")
+        let kitchendoor2 = this.add.text(this.w * 0.35, this.w * 0.5, "🚪 door")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -180,7 +180,7 @@ class Garage extends AdventureScene {
         super("garage", "The Garage");
     }
     onEnter() {
-        let ladder = this.add.text(this.w * 0.2, this.w * 0.15, "🪜 ladder")
+        let ladder = this.add.text(this.w * 0.5, this.w * 0.4, "🪜 ladder")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -192,7 +192,7 @@ class Garage extends AdventureScene {
                 this.grabItem(ladder)
             })
 
-        let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 door")
+        let door = this.add.text(this.w * 0.1, this.w * 0.4, "🚪 door")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -213,7 +213,7 @@ class Garage extends AdventureScene {
                 this.gainItem('plant');
                 this.grabItem(plant)
             })
-            let wall = this.add.text(this.w * 0.3, this.w * 0.3, "🧱 wall ")
+            let wall = this.add.text(this.w * 0.1, this.w * 0.1, "🧱 wall ")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
