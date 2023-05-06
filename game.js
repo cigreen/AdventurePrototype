@@ -32,13 +32,8 @@ class Yard extends AdventureScene {
             .on('pointerdown', () => {
                 this.showMessage("You pick up the plant.");
                 this.gainItem('plant');
-                this.tweens.add({
-                    targets: plant,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => plant.destroy()
-                });
+                // replace this with the stuff from engine enhancement
+                this.grabItem(plant)
             })
 
         let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 door")
@@ -82,13 +77,7 @@ class LivingRoom extends AdventureScene {
             .on('pointerdown', () => {
                 this.showMessage("You pick up the key.");
                 this.gainItem('garagekey');
-                this.tweens.add({
-                    targets: garagekey,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => garagekey.destroy()
-                });
+                this.grabItem(garagekey)
             })
 
         let window = this.add.text(this.w * 0.3, this.w * 0.4, "🪟 window")
@@ -178,13 +167,7 @@ class Garage extends AdventureScene {
             .on('pointerdown', () => {
                 this.showMessage("You pick up the ladder.");
                 this.gainItem('ladder');
-                this.tweens.add({
-                    targets: ladder,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => ladder.destroy()
-                });
+                this.grabItem(ladder)
             })
 
         let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 door")
@@ -206,13 +189,7 @@ class Garage extends AdventureScene {
             .on('pointerdown', () => {
                 this.showMessage("You pick up the plant.");
                 this.gainItem('plant');
-                this.tweens.add({
-                    targets: plant,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => plant.destroy()
-                });
+                this.grabItem(plant)
             })
             let wall = this.add.text(this.w * 0.3, this.w * 0.3, "🧱 wall ")
             .setFontSize(this.s * 2)
@@ -269,7 +246,7 @@ const game = new Phaser.Game({
         autoCenter: Phaser.Scale.CENTER_BOTH,
         width: 1920,
         height: 1080
-        //backgroundColor: 0xffe599,
+        //backgroundColor: 0xffe599
     },
     scene: [Intro, Yard, LivingRoom, Garage, Kitchen, Outro],
     title: "Adventure Game",

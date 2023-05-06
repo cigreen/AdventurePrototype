@@ -101,7 +101,16 @@ class AdventureScene extends Phaser.Scene {
             duration: 100
         });
     }
-
+    grabItem(obj) {
+        this.tweens.add({
+            targets: obj,
+            y: `-=${2 * this.s}`,
+            alpha: { from: 1, to: 0 },
+            duration: 500,
+            onComplete: () => obj.destroy()
+        });
+    }
+    
     hasItem(item) {
         return this.inventory.includes(item);
     }
