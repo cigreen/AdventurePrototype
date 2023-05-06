@@ -101,6 +101,7 @@ class AdventureScene extends Phaser.Scene {
             duration: 100
         });
     }
+    // makes the item disappear when grabbed, making code shorter
     grabItem(obj) {
         this.tweens.add({
             targets: obj,

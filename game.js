@@ -56,6 +56,27 @@ class LivingRoom extends AdventureScene {
         super("livingroom", "The Living Room");
     }
     onEnter() {
+        let television = this.add.text(this.w * 0.5, this.w * 0.5, "📺 tv" )
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("television. Why not play a round of overwatch?”")
+            })
+            .on('pointerdown', () => {
+                    this.shakeItem(television)
+                    this.showMessage("we lost, this game sucks it’s actually so bad trash game trash creators awful gameplay, valorant is way better anyways because this game is so dead it's on life support who even plays this awful game anymore it's such a nightmare to try to do anything in this game because the devs dont care about it and its definitely not my fault we lost but my teammates why do i always get awful teammates?");
+            })
+        let yardDoor = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 door")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("this door heads to the yard!")
+                })
+            .on('pointerdown', () => {    
+                    this.gotoScene('yard');
+                    this.shakeItem(door)
+                
+            })
         let kitchendoor = this.add.text(this.w * 0.5, this.w * 0.1, "🚪 door")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -92,6 +113,7 @@ class LivingRoom extends AdventureScene {
             });
 
         let garagedoor = this.add.text(this.w * 0.6, this.w * 0.2, "🚪 door")
+            .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
                 this.showMessage('this door heads to the garage.');
