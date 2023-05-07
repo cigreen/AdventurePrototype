@@ -4,6 +4,7 @@ class Yard extends AdventureScene {
     }
 
     onEnter() {
+        let selectsound = this.sound.add('select')
         let window = this.add.text(this.w * 0.5, this.h * 0.1, "🪟 window")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -16,12 +17,14 @@ class Yard extends AdventureScene {
             })
             .on('pointerdown', () => {
                 if (this.hasItem("plant")) {
+                    selectsound.play();
                     this.shakeItem(window)
                     this.loseItem("plant");
                     this.showMessage("alright. I mean, yeah, that certainly is A method to enter your own home.");
                     window.setText("🪟 broken window");
                     this.gotoScene('livingroom');
                 } else {
+                    selectsound.play();
                     this.showMessage("window's locked. shame.")
                 }
             })
@@ -32,6 +35,7 @@ class Yard extends AdventureScene {
                 this.showMessage("a plant in a pot. Surprisingly hefty!")
             })
             .on('pointerdown', () => {
+                selectsound.play();
                 this.showMessage("You pick up the plant.");
                 this.gainItem('plant');
                 // replace this with the stuff from engine enhancement
@@ -45,6 +49,7 @@ class Yard extends AdventureScene {
                 this.showMessage("the door to your house. Going through here would surely be what most humans would to get into a house.")
                 })
             .on('pointerdown', () => {    
+                    selectsound.play();
                     this.showMessage("you open the door to go find some cookies!")
                     this.gotoScene('livingroom');
                     this.shakeItem(door)
@@ -59,6 +64,7 @@ class LivingRoom extends AdventureScene {
         super("livingroom", "The Living Room");
     }
     onEnter() {
+        let selectsound = this.sound.add('select')
         let television = this.add.text(this.w * 0.30, this.h * 0.45, "📺 tv" )
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -66,6 +72,7 @@ class LivingRoom extends AdventureScene {
                 this.showMessage("television. Why not play a round of overwatch?”")
             })
             .on('pointerdown', () => {
+                    selectsound.play();
                     this.shakeItem(television)
                     this.showMessage("we lost, this game sucks it’s actually so bad trash game trash creators awful gameplay, valorant is way better anyways because this game is so dead it's on life support who even plays this awful game anymore it's such a nightmare to try to do anything in this game because the devs dont care about it and its definitely not my fault we lost but my teammates why do i always get awful teammates?");
             })
@@ -75,7 +82,8 @@ class LivingRoom extends AdventureScene {
             .on('pointerover', () => {
                 this.showMessage("this door heads to the yard!");
                 })
-            .on('pointerdown', () => {    
+            .on('pointerdown', () => { 
+                    selectsound.play();   
                     this.showMessage("not sure why you'd wanna head back to the yard, but okay!");
                     this.gotoScene('yard');
                     this.shakeItem(door);
@@ -87,7 +95,8 @@ class LivingRoom extends AdventureScene {
             .on('pointerover', () => {
                 this.showMessage("THIS DOOR GOES TO THE KITCHEN THIS IS SO EXCITING IT’S COOKIE TIME AHHHHHHHHH")
                 })
-            .on('pointerdown', () => {    
+            .on('pointerdown', () => {  
+                    selectsound.play();  
                     this.showMessage("COOKIEEEEEEEEEESSSSSS!!!!");
                     this.gotoScene('kitchen');
                     this.shakeItem(kitchendoor);
@@ -101,6 +110,7 @@ class LivingRoom extends AdventureScene {
                 this.showMessage("the key to the garage! huzzah!")
             })
             .on('pointerdown', () => {
+                selectsound.play();
                 this.showMessage("you pick up the key.");
                 this.gainItem('garagekey');
                 this.grabItem(garagekey)
@@ -113,6 +123,7 @@ class LivingRoom extends AdventureScene {
                 this.showMessage("“that is, in fact, a fweaking window.”");
             })
             .on('pointerdown', () => {
+                selectsound.play();
                 this.showMessage("not sure why you'd wanna head back to the yard, but okay!")
                 this.gotoScene('yard');
                 this.shakeItem(window)
@@ -126,6 +137,7 @@ class LivingRoom extends AdventureScene {
                 
             })
             .on('pointerdown', () => {
+                selectsound.play();
                 if (this.hasItem("garagekey")) {
                     this.loseItem("garagekey");
                     this.shakeItem(garagedoor)
@@ -143,6 +155,7 @@ class Kitchen extends AdventureScene {
         super("kitchen", "The Kitchen");
     }
     onEnter() {
+        let selectsound = this.sound.add('select')
         let cookie = this.add.text(this.w * 0.1, this.h * 0.5, "🍪 cookie")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -150,6 +163,7 @@ class Kitchen extends AdventureScene {
                 this.showMessage("a cookie on the top shelf. Might need a ladder to reach that.");
             })
             .on('pointerdown', () => {
+                selectsound.play();
                 if (this.hasItem("ladder")) {
                         this.shakeItem(cookie)
                         this.showMessage("IT’S COOKIE TIME LETS GOOOOOOOO!");
@@ -165,6 +179,7 @@ class Kitchen extends AdventureScene {
                 this.showMessage("the sink. You gotta clean those grubby little paws after all the plant throwing.")
             })
             .on('pointerdown', () => {
+                    selectsound.play();
                     this.shakeItem(sink)
                     this.showMessage("hands cleaned, all ready to munch on cookies!");
             })
@@ -174,7 +189,8 @@ class Kitchen extends AdventureScene {
             .on('pointerover', () => {
                 this.showMessage("a door that leads to the living room!")
                 })
-            .on('pointerdown', () => {    
+            .on('pointerdown', () => {  
+                    selectsound.play();  
                     this.showMessage("you head back to the living room.")
                     this.shakeItem(kitchendoor2)
                     this.gotoScene('livingroom');
@@ -187,6 +203,7 @@ class Garage extends AdventureScene {
         super("garage", "The Garage");
     }
     onEnter() {
+        let selectsound = this.sound.add('select')
         let ladder = this.add.text(this.w * 0.5, this.h * 0.8, "🪜 ladder")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -194,6 +211,7 @@ class Garage extends AdventureScene {
                 this.showMessage("this could be helpful to get a cookie from the top shelf.")
             })
             .on('pointerdown', () => {
+                selectsound.play();
                 this.showMessage("You pick up the ladder.");
                 this.gainItem('ladder');
                 this.grabItem(ladder)
@@ -206,6 +224,7 @@ class Garage extends AdventureScene {
                 this.showMessage("the door to your living room.")
                 })
             .on('pointerdown', () => {   
+                    selectsound.play();
                     this.showMessage('it’s locked. Oh gee willickers, we left the key inside! Silly billy, gotta find another way inside after your mistakey-wakey!');
                 
             })
@@ -216,6 +235,7 @@ class Garage extends AdventureScene {
                 this.showMessage("another plant! In the room with the least amount of sun! Real smart thinking, putting it in here.")
             })
             .on('pointerdown', () => {
+                selectsound.play();
                 this.showMessage("You pick up the plant.");
                 this.gainItem('plant');
                 this.grabItem(plant)
@@ -231,6 +251,7 @@ class Garage extends AdventureScene {
                 }
             })
             .on('pointerdown', () => {
+                selectsound.play();
                 if (this.hasItem("plant")) {
                     this.loseItem("plant");
                     this.shakeItem(wall)
@@ -254,11 +275,13 @@ class Intro extends Phaser.Scene {
     }
     create() {
         let maintheme = this.sound.add('cookiequesttheme');
+        let selectsound = this.sound.add('select')
         maintheme.play();
         this.add.text(50,50, "Cookie Quest").setFontSize(50).setTint(0x000000);
         this.add.text(50, 100, "You’ve been tending your flowers for too long, and now your tummy is a-rumblin’").setFontSize(20).setTint(0x000000);
         this.add.text(50,150, "Click anywhere to begin.").setFontSize(20).setTint(0x000000);
         this.input.on('pointerdown', () => {
+            selectsound.play();
             this.cameras.main.fade(1000, 0,0,0);
             this.time.delayedCall(1000, () => this.scene.start('yard'));
         });
