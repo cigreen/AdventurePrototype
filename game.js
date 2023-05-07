@@ -247,7 +247,14 @@ class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
     }
+    preload() {
+        this.load.path = "./assets/";
+        this.load.audio('cookiequesttheme', 'CookieQuestTheme.mp3');
+        this.load.audio('select', 'soundscmpm120.wav')
+    }
     create() {
+        let maintheme = this.sound.add('cookiequesttheme');
+        maintheme.play();
         this.add.text(50,50, "Cookie Quest").setFontSize(50).setTint(0x000000);
         this.add.text(50, 100, "You’ve been tending your flowers for too long, and now your tummy is a-rumblin’").setFontSize(20).setTint(0x000000);
         this.add.text(50,150, "Click anywhere to begin.").setFontSize(20).setTint(0x000000);
