@@ -16,8 +16,8 @@ Experience requirements:
 
 Asset sources:
 - Objects were made using simple text and Apple emojis. 
-- Cookie Quest Theme was created by myself using VCV Rack (https://vcvrack.com/) and further edited using the Reaper DAW (https://www.reaper.fm/)
-- Selection sound effect was created by myself using the Reaper DAW (https://www.reaper.fm/).
+- Cookie Quest Theme was created by myself using [VCV Rack](https://vcvrack.com/) and further edited using the [Reaper DAW](https://www.reaper.fm/)
+- Selection sound effect was created by myself using the [Reaper DAW](https://www.reaper.fm/).
 
 Code sources:
 - `adventure.js` and `index.html` were created for this project [Adam Smith](https://github.com/rndmcnlly) and edited by me.
